@@ -18,5 +18,8 @@ app.use(express.json())
 // This is the place for the routes Sweety, I am adding one route of the auth, rest you may add or let me know
 app.use('/api/auth', require('./modules/auth/auth.routes'))
 
+const meetingRoutes = require('./modules/meeting/meeting.routes');
+app.use('/api/meetings', meetingRoutes);
+
 app.use(errorHandler)
 module.exports = app 
