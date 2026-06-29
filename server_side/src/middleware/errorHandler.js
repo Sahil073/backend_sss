@@ -10,7 +10,7 @@ const errorHandler = (err, req, res, next) => {
 
     })
 
-    const cod = err.code || 'Internal Error'
+    const code = err.code || 'Internal Error'
 
     const message = err.message || 'Bhai muje khuch shi nhi lg rha he'
 
@@ -19,4 +19,4 @@ const errorHandler = (err, req, res, next) => {
     return errorResponse(res, code, message, status)
 }
 
-mmodule.exports = errorHandler
+module.exports = errorHandler

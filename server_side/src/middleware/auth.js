@@ -5,7 +5,7 @@ const {errorResponse} = require('../utils/apiResponse')
 const auth = (req, res, next) => {
     const authHeader = req.headers.authorization
 
-    if(!authHeader || !aauthheader.startsWith('Bearer ')) {
+    if(!authHeader || !authHeader.startsWith('Bearer ')) {
         return errorResponse(res, 'TOKEN_INVALID', 'No token provided', 401)
     }
 
