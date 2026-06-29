@@ -8,9 +8,9 @@ const generateRoomCode = async () => {
         const code = Array.from(crypto.randomBytes(8)).map(byte => CHARACTERS[byte % CHARACTERS.length]).join('')
 
         const result = await pool.query(
-            'SELECT id FROM meetingss WHERE room_code = $1', [code]
+            'SELECT id FROM meetings WHERE room_code = $1', [code]
         )
-        if(result.row.length === 0){
+        if(result.rows.length === 0){
             return code
         }
     }
