@@ -6,6 +6,6 @@ const auth = require('../../middleware/auth')
 const router = Router()
 
 router.get('/profile', auth, userController.getProfile)
-router.patch('/profie', auth, userController.updateProfile)
+router.patch('/profile', auth, userController.updateProfile)
 
 module.exports = router 
