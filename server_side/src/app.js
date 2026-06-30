@@ -32,7 +32,7 @@ const meetingRoutes = require('./modules/meeting/meeting.routes');
 app.use('/api/meetings', meetingRoutes);
 
 const userRoutes = require('./modules/user/user.routes')
-app.use('/api/user', userRoutes)
+app.use('/api/users', userRoutes)
 
 
 app.use(errorHandler)
