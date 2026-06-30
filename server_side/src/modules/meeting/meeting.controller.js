@@ -27,6 +27,16 @@ const createScheduledMeeting = async (req, res, next) => {
     }
 };
 
+const getMyMeetings = async (req, res, next) => {
+    try {
+        const hostId = req.user.userId;
+        const meetings = await meetingService.getPastMeetings(hostId);
+        return successResponse(res, meetings, 200)
+    } catch (error) {
+        next(error);
+    };
+};
+
 const validateRoom = async (req, res, next) => {
     try {
         const { roomCode } = req.params; 
@@ -36,7 +46,14 @@ const validateRoom = async (req, res, next) => {
             return errorResponse(res, 'ROOM_NOT_FOUND', 'Ye room code galat hai ya meeting exist nhi krti', 404);
         }
 
-        return successResponse(res, meeting, 200);
+        const validateResponse = {
+            valid: true,
+            meetingId: meeting.meetingId,
+            hostId: meeting.hostId,
+            title: meeting.title
+        }
+
+        return successResponse(res, validateResponse, 200);
     } catch (error) {
         next(error);
     }
@@ -45,5 +62,6 @@ const validateRoom = async (req, res, next) => {
 module.exports = {
     createInstantMeeting,
     createScheduledMeeting,
+    getMyMeetings,
     validateRoom
 };

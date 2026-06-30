@@ -16,7 +16,15 @@ const getMeetingByCode = async (roomCode) => {
     return result.rows[0];
 };
 
+const getMeetingsByHostId = async (hostId) => {
+    const query = `SELECT id, title, room_code, host_id, status FROM meetings WHERE host_id= $1 
+    ORDER BY created_at DESC`
+    const result = await pool.query(query, [hostId])
+    return result.rows
+}
+
 module.exports = {
     createMeeting,
-    getMeetingByCode
+    getMeetingByCode,
+    getMeetingsByHostId
 };

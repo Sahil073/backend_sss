@@ -26,7 +26,15 @@ const getMeetingByCode = async (roomCode) => {
     return null;
 };
 
+const getPastMeetings = async (hostId) => {
+    const meetings = await meetingModel.getMeetingsByHostId(hostId);
+    return meetings.map(meeting => formatMeetingResponse(meeting));
+}
+
+
+
 module.exports = {
     createMeeting,
-    getMeetingByCode
+    getMeetingByCode,
+    getPastMeetings
 };

@@ -5,7 +5,7 @@ const getUserById = async (userId) =>{
         'SELECT id, name, email, avatar_url, created_at FROM users WHERE id = $1', [userId]
     )
  
-   return result.row[0]
+   return result.rows[0]
 }
 
 const updateUserProfile = async (userId, name, avatarUrl) => {
