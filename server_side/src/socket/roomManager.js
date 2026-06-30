@@ -1,9 +1,9 @@
 const { redisClient } = require('../config/redis')
-
+const ROOM_TTL_SECONDS = 3600
 const addParticipant = async (roomCode, userId, data) => {
     const key = `room:${roomCode}`
 
-    await redisClient.hSet(key, userId. JSON.stringify(data))
+    await redisClient.hSet(key, userId, JSON.stringify(data))
 
     await redisClient.expire(key, ROOM_TTL_SECONDS)
 }

@@ -1,5 +1,5 @@
 const { Socket } = require('socket.io')
-const roomManager = require('./reactionHandlers') 
+const roomManager = require('./roomManager') 
 
 module.exports = (io, socket) => {
     const {userId, name} = socket.user
@@ -18,7 +18,7 @@ module.exports = (io, socket) => {
             })
             const participants = await roomManager.getParticipants(roomCode)
             socket.emit('room:participants', {participants})
-            socket.io(roomCode).emit('room:user-joined', {
+            socket.to(roomCode).emit('room:user-joined', {
                 userId,
                 userName,
                 isHost: false
