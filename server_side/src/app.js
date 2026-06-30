@@ -6,12 +6,26 @@ const errorHandler = require('./middleware/errorHandler')
 
 const app = express()
 
+const allowedOrigins = [
+    "http://localhost:5173", 
+    CLIENT_URL               
+];
+
 app.use(cors({
-    origin: CLIENT_URL,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Authorization', 'Content-Type'],
+    origin: (origin, callback) => {
+        // Allow requests with no Origin header
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+
+        return callback(new Error("Not allowed by CORS"));
+    },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Authorization", "Content-Type"],
     credentials: true
-}))
+}));
 
 app.use(express.json())
 
