@@ -10,6 +10,11 @@ router.post('/instant', authMiddleware, meetingController.createInstantMeeting);
 // Scheduled meeting create krne ka rasta (jisme title dena hoga)
 router.post('/create', authMiddleware, meetingController.createScheduledMeeting);
 
+
+//User ki purani meetings dekhne ka rasta
+router.get('/my', authMiddleware, meetingController.getMyMeetings);
+
+
 // Check krne ke liye ki room exist krta hai ya nhi
 // (Yaha authMiddleware nhi lagaya kyuki guests bhi room check kr skte hai bina login kiye!)
 router.get('/:roomCode/validate', meetingController.validateRoom);

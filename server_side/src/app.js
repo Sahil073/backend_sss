@@ -45,5 +45,9 @@ app.use('/api/auth', require('./modules/auth/auth.routes'))
 const meetingRoutes = require('./modules/meeting/meeting.routes');
 app.use('/api/meetings', meetingRoutes);
 
+const userRoutes = require('./modules/user/user.routes')
+app.use('/api/users', userRoutes)
+
+
 app.use(errorHandler)
 module.exports = app 
